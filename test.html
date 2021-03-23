@@ -1,17 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="js/libraries/jquery-3.6.0.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script>
+        $(document).ready(function() {
+            alert("Hello, jQuery!");
+        })
+    </script>
+<style>
+    table, th, td {
+        border: 1px solid black;
+        text-align: center;
+        font-family: monospace;
+        padding: 3px;
+
+    }
+
+    thead {
+        background-color: gray;
+        font-weight: bold;
+    }
+
+    tbody {
+        background-color: green;
+    }
+
+    tfoot {
+        background-color: yellow;
+    }
+
+</style>
 </head>
 <body>
-    <script>
-        function myApp() {
-            alert("Welcome to my App");
-        }
-        myApp();    
-    </script>
+    <table>
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>Morning</th>
+                <th>Afternoon</th>
+                <th>Evening</th>
+            </tr>
+        </thead>
+        </tbody>
+            <tr>
+                <td>Monday</td>
+                <td>YES</td>
+                <td>NO</td>
+                <td>NO</td>
+            </tr>
+            <tr>
+                <td>Wednesday</td>
+                <td>NO</td>
+                <td>YES</td>
+                <td>NO</td>
+            </tr>
+            <tr>
+                <td>Friday</td>
+                <td>YES</td>
+                <td>NO</td>
+                <td>YES</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>YES Total</td>
+                <td>2</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+        </tfoot>
+    </table>
 </body>
 </html>
