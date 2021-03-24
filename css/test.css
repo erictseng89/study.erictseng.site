@@ -1,0 +1,73 @@
+body {
+    height: 200vh;
+}
+table, th, td {
+    border: 1px solid black;
+    text-align: center;
+    font-family: monospace;
+    padding: 3px;
+}
+
+thead {
+    background-color: gray;
+    font-weight: bold;
+}
+
+tbody {
+    background-color: green;
+}
+
+tfoot {
+    background-color: yellow;
+}
+
+video {
+    /* padding: 10px; */
+    margin: 5px;
+    /* border: 1px solid black; */
+    border-radius: 5%;
+    width: 200px !important;
+}
+
+#iframeIndex {
+    border: 3px inset gray;
+}
+
+form {
+    margin: 15px;
+    width: 400px;
+    font-size: 20px;
+    /* line-height: 2.5em; */
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    grid-template-rows: repeat(50px);
+    grid-gap: 10px 5px;
+    align-items: center;
+    justify-content: right;
+}
+
+form input {
+    font-size: 0.7em;
+}
+
+form textarea {
+    font-family: sans-serif;
+    grid-column: 1 / 3;
+    font-size: 0.8em;
+}
+
+.submit {
+    width: 50px;
+    justify-self: right;
+    grid-column: 2 / 3;
+}
+
+#box { 
+    border: 1px solid black;
+    width: 50px;
+    height: 50px;
+    margin: auto;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}

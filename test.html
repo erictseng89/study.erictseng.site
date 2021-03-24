@@ -1,41 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/test.css">
+    <!-- <script src="js/test.js"></script> -->
     <script src="js/libraries/jquery-3.6.0.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script>
-        $(document).ready(function() {
-            alert("Hello, jQuery!");
-        })
-    </script>
-<style>
-    table, th, td {
-        border: 1px solid black;
-        text-align: center;
-        font-family: monospace;
-        padding: 3px;
 
-    }
-
-    thead {
-        background-color: gray;
-        font-weight: bold;
-    }
-
-    tbody {
-        background-color: green;
-    }
-
-    tfoot {
-        background-color: yellow;
-    }
-
-</style>
 </head>
 <body>
+
     <table>
         <thead>
             <tr>
@@ -74,5 +51,36 @@
             </tr>
         </tfoot>
     </table>
+    <!-- <video src="videos/花式麵食製作大公開.webm" controls autplay muted width="300px"></video> -->
+    <video width="200px" height="100px" autoplay="0" muted loop>
+         <source src="videos/花式麵食製作大公開.webm" type="video/webm">
+    </video>
+    <iframe id="iframeIndex" src="index.html" height="500px" width="500px"><p>This is iframe</p></iframe>
+    <form>
+        手機號碼:<input type="text" width="100px" placeholder="0912 345 678">
+        密碼:<input type="password" width="100px">
+    
+        請問有沒有會員?
+        <div>
+            <input type="radio" name="會員" value="是">是
+            <input id="nomember" type="radio" name="會員" value="否">沒有</div>
+            
+        <!-- type="color" 會顯示一個小視窗 -->
+        選擇顏色:<input type="color" name="color">
+        
+        選擇平日:
+        <select name="平日">
+            <option value="monday">禮拜一</option>
+            <option value="tuesday">禮拜二</option>
+            <option value="Wednesday">禮拜三</option>
+            <option value="thursday">禮拜四</option>
+            <option value="Friday">禮拜五</option>
+        </select>
+
+        <textarea id="reviewbox" name="textbox" rows="11" cols="">評論框</textarea>
+        <input class="submit" type="submit" value="送出">
+    </form>
+    <div id="box">BOX</div>
+<script src="js/test.js"></script>
 </body>
 </html>
