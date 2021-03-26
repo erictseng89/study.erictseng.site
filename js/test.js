@@ -21,9 +21,23 @@ function noMemberAlert () {
 }
 
 
-$("#box").bind('click', funcA);
+$("#click").bind('click', funcA);
 
 function funcA() {
     // $(this).fadeTo(500, 0.5);
-    $(this).slideToggle(500);
+    $('#box').slideToggle(500);
 }
+
+var logoFunc = function() {
+    var y = window.scrollY;
+    // alert("scrollY = " + y);
+    if (y >= 500) { 
+        $("#box").slideDown(500);
+        
+    }
+    else {
+        $("#box").fadeOut(500);
+    }  
+};
+
+window.addEventListener("scroll", logoFunc);
