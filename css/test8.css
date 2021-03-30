@@ -1,0 +1,31 @@
+body {
+    font-family: DFKai-sb;
+}
+
+h1{
+    color: red;
+}
+p{
+    max-width:  350px;
+}
+.gameBox {
+    /* border: 1px solid black; */
+    display: flex;
+    flex-wrap: wrap;
+    width: 90vw;
+    max-width: 300px;
+    align-items: center;
+    justify-content: center;
+}
+
+.cardBox {
+    /* border: 1px solid red; */
+    width: 39px;
+    height: 49px;
+    margin: 5px;
+}
+
+.cardBox img {
+    max-width: 100%;
+    height: auto;
+}
