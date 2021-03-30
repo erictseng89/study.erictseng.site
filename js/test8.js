@@ -28,6 +28,9 @@ function askCard() {
     if (boxValue == "") {
         cardPairs = 12;
     }
+    else if (boxValue < 1 || boxValue > 52) {
+        cardPairs = 12;
+    }
     else {
         cardPairs = document.querySelector('#cardPlayBox').value;
     }
@@ -183,9 +186,7 @@ function checker(card1, card2) {
 function correct(card1, card2) {
     document.cardName[card1].src=cardBank[53];
     document.cardName[card2].src=cardBank[53];
-    console.log(cardPairs);
     winCount++;
-    console.log (winCount);
     if (winCount == cardPairs) {
         removeImg(card1, card2);
         alert(`恭喜您浪費了您${elapsedTime}秒的寶貴時間。\n要不要再繼續浪費生命?`);
