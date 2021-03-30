@@ -58,6 +58,7 @@ function shuffle() {
         loadCards();
     }
     console.log("洗牌開始");
+    winCount = 0;
     for (i = 0; i < cardPairs; i++) {
         let r = Math.floor(cardNumber*Math.random());
         let tempImage = cardBank[i];
