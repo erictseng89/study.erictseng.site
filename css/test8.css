@@ -1,5 +1,6 @@
 body {
     font-family: DFKai-sb;
+    font-size: 20px;
 }
 
 h1{
@@ -13,15 +14,15 @@ p{
     display: flex;
     flex-wrap: wrap;
     width: 90vw;
-    max-width: 300px;
+    max-width: 600px;
     align-items: center;
     justify-content: center;
 }
 
 .cardBox {
     /* border: 1px solid red; */
-    width: 39px;
-    height: 49px;
+    width: 78px;
+    height: 98px;
     margin: 5px;
 }
 
