@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="../js/libraries/jquery-3.6.0.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>計時</title>
+    <style>
+        div p {
+            border: 2px solid red;
+            font-size: 30px;
+            width: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>倒數計時</h1>
+    <form action="javascript:start()">
+        <input type="text" placeholder="1 ~ 999">秒
+        <button type="submit">開始計時</button>
+    </form>
+    <div>
+        <p>
+            999
+        </p>
+        
+    </div>
+    <script>
+        let time = 0;
+        function start() {
+            time = $('form input').val();
+            if (time >=1 && time <= 999) {
+                setTimeout("timer(time)", 1000);
+            }
+            else {
+                alert("請輸入 1~999秒。")
+            }
+        }
+
+        function timer(sec) {
+            console.log("timer trigged " + sec);
+            $('p').text(sec);
+            if (sec > 0) {
+                let newSec = sec - 1;
+                setTimeout(`timer(${newSec})`, 1000);
+            }
+            else if (sec == 0) {
+                setTimeout("timer(time)", 1000);
+            }
+        }
+    </script>
+</body>
+</html>

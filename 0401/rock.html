@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- <link rel="stylesheet" href="../css/reset.css"> -->
+    <script src="../js/libraries/jquery-3.6.0.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>剪刀石頭布</title>
+    <style>
+        body {
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        li {
+            height: 40px;
+            width: 100px;
+            border: 1px solid black;
+            display: inline-block;
+            text-align: center;
+        }
+        li:hover {
+            background-color: grey;
+            transform: scale(1.1);
+        }
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #resultBox {
+            border: 1px solid black;
+            height: 100px;
+        }
+        #resultBox p {
+            display: inline-block;
+            width:40%;
+            margin: 0;
+            /* padding: 0; */
+        }
+
+        .timerBox {
+            border: 2px solid red;
+            font-size: 30px;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+        }
+
+        h4 {
+            margin: 5px 5px;
+            width: 400px;
+        }
+        main p {
+            /* margin: 0; */
+            /* border: 1px solid black; */
+            height: 65%;
+            width: 95%;
+        }
+
+        .statsBox {
+            /* border: 1px solid black; */
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            width: 100%;
+            height: 100px;
+        }
+
+        .statsInnerBox {
+            border: 1px solid black;
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+        }
+
+        .statsInnerBox div {
+            border: 1px solid green;
+        }
+
+        .statsInnerBox p{
+            /* border: 1px solid blue; */
+            align-self: flex-end;
+            justify-self: center;
+            text-align: center;
+        }
+
+        .statsInnerBox div {
+            /* background: linear-gradient(90deg, hsl(120, 100%, 50%) 50%, white 53%); */
+            background-color: hsl(120, 100%, 50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* background-color: red; */
+            /* width:70%; */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>剪刀石頭布!</h1>
+        <form action="javascript:play()">
+            <input type="text" placeholder=" 血滴: (10~40)" required>
+            <button type="submit" value="submit">開始</button>
+        </form>
+        <ul>
+            <li id="剪刀">剪刀</li>
+            <li id="石頭">石頭</li>
+            <li id="布">布</li>
+        </ul>
+    </header>
+    <main>
+        <div id="resultBox">        
+            <h4>結果</h4>
+            <p class="result"></p>
+        </div>
+
+        <div class="statsBox">
+            <div class="statsInnerBox">
+                <p>玩家</p>
+                <div class="player">10/10</div>
+            </div>
+            <div class="statsInnerBox">
+                <p>電腦</p>
+                <div class="npc">10/10</div>
+            </div>
+            
+        </div>
+        <p class="timerBox">
+
+        </p>
+        
+    </main>
+    <script>
+        let choices = ["剪刀", "石頭", "布"];
+        let resultMsg = ["贏", "輸", "平手"];
+        let choice = "";
+        let resultBox = $('.result');
+        let hpMax = 10;
+        let hpP = 10;
+        let hpN = 10;
+
+        function play() {
+            hpMax = parseInt($(`input:first`).val());
+            hpP = hpMax; hpN = hpMax;
+            let npc = $(".npc");
+            let player = $(".player");
+            npc.css(`background`, `linear-gradient(90deg, hsl(120, 100%, 50%) 100%, white 100%)`);
+            player.css(`background`, `linear-gradient(90deg, hsl(120, 100%, 50%) 100%, white 100%)`);
+            npc.text(`${hpMax}/${hpMax}`);
+            player.text(`${hpMax}/${hpMax}`);
+        }
+
+
+        function timerBuffer() {
+            choice = event.target.id;
+            setTimeout("choose())", 1000);
+        }
+        function choose() {
+            choice = event.target.id;
+            let npc = npcPlay()            
+            let result = fight(choice, npc);
+            hpCalc(result);
+            let printer = `你選擇了${choice}。<br>`;
+            printer += `電腦選擇了${npc}。<br>`;
+            printer += `${result}。`;
+            resultBox.html(printer);
+        }
+
+        function npcPlay() {
+            let r = Math.floor(3*Math.random());
+            let npcChoice = choices[r];
+            return npcChoice;
+        }
+        function fight(p, n){
+            let result = "";
+            switch (p) {
+                case n:
+                    result = resultMsg[2];
+                    break;
+                case choices[0]:
+                    result = n == choices[2] ? resultMsg[0] : resultMsg[1];
+                    break;
+                case choices[1]:
+                    result = n == choices[0] ? resultMsg[0] : resultMsg[1];
+                    break;
+                case choices[2]:
+                    result = n == choices[1] ? resultMsg[0] : resultMsg[1];
+                    break;
+                default:
+                    result = resultMsg[1];
+            }
+            return result;
+        }
+        
+        function hpCalc(result) {
+            switch (result) {
+                case resultMsg[0]:
+                    takeDmg('npc');
+                    break;
+                case resultMsg[1]:
+                    takeDmg('player');
+                    break;
+                case resultMsg[2]:
+                    break;
+            }
+        }
+
+        function takeDmg (side) {
+            console.log(side);
+            let color = 0;
+            let blood = 0, white = 0;
+            let target = $(`.${side}`)
+            
+            if (side == 'player') {
+                hpP--;
+                color = hpP/hpMax * 120;
+                blood = hpP/hpMax * 100;
+                white = blood + 3;
+                // console.log(red, white);
+                target.text(`${hpP}/${hpMax}`);
+                if (hpP == 0){
+                    alert("你輸了");
+                    play();
+                }
+            }
+            else if (side == 'npc') {
+                hpN--;
+                color = hpN/hpMax * 120;
+                blood = hpN/hpMax * 100;
+                white = blood + 3;
+                // console.log(red, white);
+                target.text(`${hpN}/${hpMax}`);
+                if (hpN == 0){
+                    alert("你贏了");
+                    play();
+                }
+            }
+            console.log(color);
+
+            target.css(`background`, `linear-gradient(90deg, hsl(${color}, 100%, 50%) ${blood}%, white ${white}%)`);
+        }
+
+        let time = 5;
+
+        function start() {
+            // time = $('form input').val();
+            // if (time >=1 && time <= 999) {
+                setTimeout("timer(time)", 1000);
+            // }
+            // else {
+            //     alert("請輸入 1~999秒。")
+            // }
+        }
+
+        function timer() {
+            console.log("timer trigged " + sec);
+            $('p').text(sec);
+            if (sec > 0) {
+                let newSec = sec - 1;
+                setTimeout(`timer(${newSec})`, 1000);
+            }
+            else if (sec == 0) {
+                setTimeout("timer(time)", 1000);
+            }
+        }
+        /* function hpText(side) {
+            $(`.${side}`).text( )
+        } */
+        $('li').bind("click", choose);
+    </script>
+</body>
+</html>
