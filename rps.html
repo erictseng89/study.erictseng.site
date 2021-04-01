@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="css/rps.css">
+    <script src="js/libraries/jquery-3.6.0.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>剪刀石頭布</title>
+
+</head>
+<body>
+    <header>
+        <h1>剪刀石頭布!</h1>
+        <form action="javascript:start()">
+            <input type="text" placeholder=" 血滴: (10~40)" required>
+            <button type="submit" value="submit">開始</button>
+        </form>
+        <ul>
+            <li id="剪刀">剪刀</li>
+            <li id="石頭">石頭</li>
+            <li id="布">布</li>
+        </ul>
+    </header>
+    <main>
+        <div id="resultBox">        
+            <h4>結果</h4>
+            <p class="result"></p>
+        </div>
+
+        <div class="statsBox">
+            <div class="statsInnerBox">
+                <p>玩家</p>
+                <div class="player">10/10</div>
+            </div>
+            <div class="statsInnerBox">
+                <p>電腦</p>
+                <div class="npc">10/10</div>
+            </div>
+            
+        </div>
+        <p class="timerBox"></p>
+        
+    </main>
+<script src="js/rps.js"></script>
+</body>
+</html>
