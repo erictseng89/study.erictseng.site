@@ -1,31 +1,53 @@
 body {
     font-family: DFKai-sb;
+    font-size: 20px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 h1{
     color: red;
+    text-align: center;
+    max-width: 95vw;
 }
 p{
-    max-width:  350px;
+    /* width:  90vh; */
+    max-width: 400px;
+    text-align: center;
+    padding: 2vw;
+    margin: auto;
 }
 .gameBox {
+    margin: auto;
     /* border: 1px solid black; */
     display: flex;
     flex-wrap: wrap;
-    width: 90vw;
-    max-width: 300px;
+    width: 97vw;
+    max-width: 600px;
     align-items: center;
     justify-content: center;
 }
 
 .cardBox {
     /* border: 1px solid red; */
-    width: 39px;
-    height: 49px;
-    margin: 5px;
+    width: 78px;
+    height: 98px;
+    margin: 4px;
 }
 
 .cardBox img {
     max-width: 100%;
     height: auto;
+}
+
+input[type="text"] {
+    width: 50px;
+}
+
+#controlForm button {
+    margin: 0 3vw;
 }

@@ -7,30 +7,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- <script>
-        function hint() {
-            document.cardName[0].src="g0.jpg";
-        }
-    </script> -->
 </head>
-<body onload="shuffle()">  
-    <h1>7秒魚記憶</h1>
+<body>  
+    <h1>🐋金魚腦記憶🐋</h1>
     <p>
         請先按一下下面的『開始』按鈕，並逐一兩兩翻閱每張牌，若連續翻起的兩張牌均相同，則可取走此兩張牌，否則電腦會自動蓋回，直到所有牌均取完為止。
-    </p>
-    <!-- <form>
-        要玩幾張? (2~54) <input type="text" id="cardPlayBox"><button type="submit" onclick="askCard()"> 開始玩!</button>
-    </form> -->
+    </p><br>
+    <form action="javascript:startPlaying()">
+        要玩幾對? (1~52) <input type="text" id="cardPlayBox"> &nbsp;<button type="submit">開始玩!</button>
+    </form>
+    <br>
     <div class="gameBox">
     </div>
     <br>
     <div id="controlForm" class="gameControl">
-        <button type="submit" value="start" onclick="shuffle()">開始</button>
-        <button id="hintButton" type="submit" value="hint" onclick="hint()">提示</button>
-        <br><br>
-        您一共使用 <input type="text">秒
-        
-
+        <button type="submit" name="start" value="shuffle" onclick="startPlaying()">洗牌</button>
+        您一共使用 <input type="text" id="timerBox">秒        <button id="hintB" type="submit" value="hint" onclick="reveal()">提示</button>
     </div>
     <script src="js/test8.js"></script>
 </body>
