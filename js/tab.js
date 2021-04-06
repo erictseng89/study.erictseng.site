@@ -54,5 +54,4 @@ function toIndex(tabName) {
     return index;
 }
 
-
 $('#tabList').on("click", "li", clickTab);

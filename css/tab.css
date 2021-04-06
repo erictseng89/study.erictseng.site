@@ -6,6 +6,9 @@ main {
     font-size: 14px;
 }
 
+select {
+    margin: auto;
+}
 ul {
     display: flex;
     justify-content: flex-start;
