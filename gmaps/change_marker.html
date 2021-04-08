@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Marker Icons</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <style type="text/css">
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+
+      /* Optional: Makes the sample page fill the window. */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script>
+      // This example adds a marker to indicate the position of Bondi Beach in Sydney,
+      // Australia.
+      function initMap() {
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 4,
+          center: { lat: 24.13737, lng: 120.68689 },
+        });
+        /* const image =
+          "https://cdn.bulbagarden.net/upload/thumb/3/39/007Squirtle.png/250px-007Squirtle.png"; */
+
+        const image = {
+          url: "https://cdn.bulbagarden.net/upload/thumb/3/39/007Squirtle.png/250px-007Squirtle.png", 
+          scaledSize: new google.maps.Size(50, 50)
+        };
+
+        const beachMarker = new google.maps.Marker({
+          position: { lat: 21.94829, lng: 120.77973 },
+          map,
+          icon: image,
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEa4yUJNvznG-Vd6McshEQV-xl8uZ3IF0&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
+  </body>
+</html>

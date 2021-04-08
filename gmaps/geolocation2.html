@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Geolocation</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <style type="text/css">
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+
+      /* Optional: Makes the sample page fill the window. */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      .custom-map-control-button {
+        appearance: button;
+        background-color: #fff;
+        border: 0;
+        border-radius: 2px;
+        box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+        cursor: pointer;
+        margin: 10px;
+        padding: 0 0.5em;
+        height: 40px;
+        font: 400 18px Roboto, Arial, sans-serif;
+        overflow: hidden;
+      }
+      .custom-map-control-button:hover {
+        background: #ebebeb;
+      }
+    </style>
+    <script>
+
+
+      function initMap() {
+
+        map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: -34.397, lng: 150.644 },
+          zoom: 18,
+        });
+
+        const icons = [{
+                url: 'https://cdn.bulbagarden.net/upload/thumb/2/21/001Bulbasaur.png/600px-001Bulbasaur.png',
+                scaledSize: new google.maps.Size(50,50)
+            }, {
+                url: 'https://cdn.bulbagarden.net/upload/thumb/7/73/004Charmander.png/600px-004Charmander.png',
+                scaledSize: new google.maps.Size(50,50)
+            }, {
+                url: "https://cdn.bulbagarden.net/upload/thumb/3/39/007Squirtle.png/250px-007Squirtle.png", 
+                scaledSize: new google.maps.Size(50, 50)
+            }];
+        const positions = [{
+            lat: 24.137519, lng: 120.686687}, 
+            {lat: 24.135970995592906, lng: 120.68769783049719}]
+        const contentString = [
+            `<div>
+                <h1 class="info_heading">新台中車站</h1>
+                <p>「台中都會區鐵路高架捷運化計畫」歷經多年爭取、規劃及興建，在中央地方通力配合下，第一階段工程已通過交通部履勘程序，台鐵列車將改駛高架橋上，豐原、潭子、太原、台中及大慶等5座高架車站同步啟用。</p><img src="images/station_img.jpg" alt="新台中車站" style="height: 80px; width: auto">
+                <p>來源: <a href="https://travel.taichung.gov.tw/zh-tw/Attractions/Intro/1138/%E6%96%B0%E8%87%BA%E4%B8%AD%E7%81%AB%E8%BB%8A%E7%AB%99">台中觀光旅遊網</a></p>
+            <div>`, 
+            `<div>
+                <h1 class="info_heading">大魯閣新時代</h1>
+                <p>新時代購物中心從7月1日起，正式由大魯閣開發股份有限公司接手經營，更名為「大魯閣新時代」。大魯閣新時代定位為『運動休閒、生活風格』的提案者，強調以「運動娛樂、親子休閒、生活提案、美食購物」為主，同時引進國際獨家差異化創意主題，將成為台中國際級購物中心新地標！<p>
+                <img src="images/taroko_img.jpg" alt="大魯閣新時代" style="height: 80px; width: auto">
+                <p>來源:<a href="http://taichung.trkmall.com.tw/about.html">大魯閣新時代</a>
+            <div>`
+            ];
+        
+        // Produce markers and window
+        const infoWindows = [];
+        contentString.forEach( function(a, i) {
+            infoWindows[i] = new google.maps.InfoWindow({
+                content: a,
+            })
+        })
+        const markers = []
+        positions.forEach( (a, i) => {
+            markers[i] = new google.maps.Marker({
+                position: positions[i],
+                map: map,
+                icon: icons[i]
+            });
+            markers[i].setMap(map);
+            markers[i].addListener('click', () => {
+                infoWindows.forEach( (a, i) => {
+                  infoWindows[i].close();
+                });
+                infoWindows[i].open(map, markers[i]
+                );
+            });
+        });
+
+        infoWindow = new google.maps.InfoWindow();
+
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              const pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+              };
+              const pos_marker = new google.maps.Marker({
+                position: pos,
+                map: map,
+                icon: icons[2]
+              })
+              pos_marker.setMap(map);
+              pos_marker.addListener('click', () => {
+                infoWindow.open(map, pos_marker
+                );
+              });
+
+              infoWindow.setPosition(pos);
+              infoWindow.setContent("你的位子");
+              // infoWindow.open(map);
+              map.setCenter(pos);
+            },
+            () => {
+              handleLocationError(true, infoWindow, map.getCenter());
+            }
+          );
+        } else {
+          // Browser doesn't support Geolocation
+          handleLocationError(false, infoWindow, map.getCenter());
+        }
+
+      }
+
+       function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(
+          browserHasGeolocation
+            ? "Error: The Geolocation service failed."
+            : "Error: Your browser doesn't support geolocation."
+        );
+        infoWindow.open(map);
+      }
+
+    
+
+    </script>
+  </head>
+  <body>
+    <div id="map"></div>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEa4yUJNvznG-Vd6McshEQV-xl8uZ3IF0&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
+  </body>
+</html>

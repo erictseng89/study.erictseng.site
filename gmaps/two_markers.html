@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+        <meta charset="utf-8">
+        <title>Simple Markers</title>
+        <style>
+        /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+        #map {
+        height: 100%;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        }
+        </style>
+    </head>
+    <body>
+        <div id="map"></div>
+        <script>
+            function initMap() {
+            var map;
+            var markers = [];
+            map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 24.136365, lng: 120.687684},
+            zoom: 16
+            });
+
+            const image = {
+          url: "https://cdn.bulbagarden.net/upload/thumb/3/39/007Squirtle.png/250px-007Squirtle.png", 
+          scaledSize: new google.maps.Size(50, 50)
+        };
+
+            const icons = [{
+                url: 'https://cdn.bulbagarden.net/upload/thumb/2/21/001Bulbasaur.png/600px-001Bulbasaur.png',
+                scaledSize: new google.maps.Size(50,50)
+            }, {
+                url: 'https://cdn.bulbagarden.net/upload/thumb/7/73/004Charmander.png/600px-004Charmander.png',
+                scaledSize: new google.maps.Size(50,50)
+            }, {
+                url: "https://cdn.bulbagarden.net/upload/thumb/3/39/007Squirtle.png/250px-007Squirtle.png", 
+                scaledSize: new google.maps.Size(50, 50)
+            }];
+
+            //建立地圖 marker 的集合
+            var marker_config = [{
+                position: {lat: 24.136365, lng: 120.687684},
+                map: map,
+                title:'妙蛙種子',
+                // label: '妙蛙種子',
+                icon: icons[0]
+            }, {
+                position: {lat: 24.137519, lng: 120.686687},
+                map: map,
+                title:'小火龍',
+                // label: '小火龍',
+                icon: icons[1]
+            }, {
+                position: {lat: 24.135931831991087, lng: 120.689993801309},
+                map: map,
+                title: '傑尼龜',
+                // label: '傑尼龜',
+                icon: icons[2]
+            }];
+            //標出 marker
+            //JavaScript forEach() 方法會將陣列內的每個元素，皆傳入並執行給定的函式一次。
+            marker_config.forEach(function(e,i) { 
+                markers[i] = new google.maps.Marker(e);
+                markers[i].setMap(map);
+            });
+            }
+        </script>
+        <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEa4yUJNvznG-Vd6McshEQV-xl8uZ3IF0&callback=initMap">
+        </script>
+    </body>
+</html>

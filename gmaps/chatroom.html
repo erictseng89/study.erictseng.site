@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="chatroom.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>聊天室</title>
+
+</head>
+<body>
+    <div id="map"></div>
+    <div id="chatbox">
+        <form>
+            <input type="text" id="name" placeholder="名字">
+            <select id="pokemon">
+                <option value="Default" selected disabled>選擇</option>
+                <option value="0">妙蛙種子</option>
+                <option value="1">小火龍</option>
+                <option value="2">傑尼龜</option>
+            </select>
+            <textarea name="message" rows="2" cols="35" placeholder="你的廢話"></textarea>
+            <input type="button" value="傳送" onclick="send">
+        </form>
+        <div id="chat_contents">內容</div>
+    </div>
+
+    <script src="chatroom.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEa4yUJNvznG-Vd6McshEQV-xl8uZ3IF0&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
+</body>
+</html>
