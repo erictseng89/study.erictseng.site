@@ -81,6 +81,9 @@ function initMap() {
     }, {
         url: "https://cdn.bulbagarden.net/upload/thumb/3/39/007Squirtle.png/250px-007Squirtle.png", 
         scaledSize: new google.maps.Size(50, 50)
+    }, {
+        url: "https://i.pinimg.com/originals/c5/67/9d/c5679d385fe4f711dcae098c70d59aa4.jpg", 
+        scaledSize: new google.maps.Size(50, 50)       
     }];
 
     let newMarker;
