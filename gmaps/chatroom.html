@@ -19,16 +19,14 @@
                 <option value="1">小火龍</option>
                 <option value="2">傑尼龜</option>
             </select>
-            <textarea name="message" rows="2" cols="35" placeholder="你的廢話"></textarea>
-            <input type="button" value="傳送" onclick="send">
+            <textarea id="message" rows="2" cols="35" placeholder="你的廢話"></textarea>
+            <button id="sendButton">傳送</button>
         </form>
-        <div id="chat_contents">內容</div>
+        <div id="chatContents"></div>
     </div>
 
+    <script src="https://www.gstatic.com/firebasejs/3.6.2/firebase.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <script src="chatroom.js"></script>
-    <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDEa4yUJNvznG-Vd6McshEQV-xl8uZ3IF0&callback=initMap&libraries=&v=weekly"
-      async
-    ></script>
 </body>
 </html>
