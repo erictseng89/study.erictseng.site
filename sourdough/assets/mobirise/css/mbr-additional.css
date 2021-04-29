@@ -686,12 +686,12 @@ section.lazy-placeholder:after {
 }
 .cid-qTkzRZLJNu .navbar {
   padding: .5rem 0;
-  background: #c7c0a7;
+  background: #b9b29a;
   transition: none;
   min-height: 77px;
 }
 .cid-qTkzRZLJNu .navbar-dropdown.bg-color.transparent.opened {
-  background: #c7c0a7;
+  background: #b9b29a;
 }
 .cid-qTkzRZLJNu a {
   font-style: normal;
@@ -775,7 +775,7 @@ section.lazy-placeholder:after {
   padding-bottom: 0;
 }
 .cid-qTkzRZLJNu .dropdown .dropdown-menu {
-  background: #c7c0a7;
+  background: #b9b29a;
   display: none;
   position: absolute;
   min-width: 5rem;
@@ -1071,12 +1071,12 @@ section.lazy-placeholder:after {
 }
 .cid-qTkzRZLJNu .nav-link:hover,
 .cid-qTkzRZLJNu .dropdown-item:hover {
-  color: #40453a !important;
+  color: #4e1c1c !important;
 }
 .cid-surCxA1GJN {
   background: #c7c0a7;
-  padding-top: 60px;
-  padding-bottom: 60px;
+  padding-top: 105px;
+  padding-bottom: 30px;
   background: linear-gradient(0deg, #c7c0a7, #ffffff);
 }
 .cid-surCxA1GJN .video-block {
@@ -1093,10 +1093,10 @@ section.lazy-placeholder:after {
 .cid-qTkA127IK8 .mbr-text,
 .cid-qTkA127IK8 .mbr-section-btn {
   text-align: right;
-  color: #571f1f;
+  color: #c7c0a7;
 }
 .cid-qTkA127IK8 H1 {
-  color: #571f1f;
+  color: #c7c0a7;
 }
 .cid-surM8zQJ1b {
   padding-top: 6rem;
@@ -1241,6 +1241,33 @@ section.lazy-placeholder:after {
   transition: 0.2s background ease-in-out;
   background: linear-gradient(to left, #c7c0a7, #40453a) !important;
 }
+.cid-svVJ76mgFZ {
+  padding-top: 90px;
+  padding-bottom: 90px;
+  background-color: #c7c0a7;
+}
+.cid-svVJ76mgFZ .title {
+  margin-bottom: 2rem;
+}
+.cid-svVJ76mgFZ .mbr-section-subtitle {
+  color: #767676;
+}
+.cid-svVJ76mgFZ a:not([href]):not([tabindex]) {
+  color: #fff;
+  border-radius: 3px;
+}
+.cid-svVJ76mgFZ a.btn-white:not([href]):not([tabindex]) {
+  color: #333;
+}
+.cid-svVJ76mgFZ textarea.form-control {
+  min-height: 188px;
+}
+.cid-svVJ76mgFZ LABEL {
+  color: #571f1f;
+}
+.cid-svVJ76mgFZ H2 {
+  color: #571f1f;
+}
 .cid-surQq9ukbQ {
   padding-top: 75px;
   padding-bottom: 75px;
@@ -1330,4 +1357,7 @@ section.lazy-placeholder:after {
 .cid-surQq9ukbQ .list {
   list-style-type: none;
   padding: 0;
+}
+.cid-surQq9ukbQ H5 {
+  text-align: center;
 }
