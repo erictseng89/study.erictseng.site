@@ -13,19 +13,19 @@ function initMap() {
     });
 
     const icons = [{
-            url: "https://archives.bulbagarden.net/media/upload/thumb/2/21/001Bulbasaur.png/600px-001Bulbasaur.png",
+            url: "./images/600px-001Bulbasaur.png",
             scaledSize: new google.maps.Size(75, 75),
         },
         {
-            url: "https://cdn2.bulbagarden.net/upload/thumb/7/73/004Charmander.png/600px-004Charmander.png",
+            url: "./images/600px-004Charmander.png",
             scaledSize: new google.maps.Size(75, 75),
         },
         {
-            url: "https://cdn2.bulbagarden.net/upload/thumb/3/39/007Squirtle.png/600px-007Squirtle.png",
+            url: "./images/600px-007Squirtle.png",
             scaledSize: new google.maps.Size(75, 75),
         },
         {
-            url: "https://cdn2.bulbagarden.net/upload/thumb/5/53/054Psyduck.png/600px-054Psyduck.png",
+            url: "./images/600px-054Psyduck.png",
             scaledSize: new google.maps.Size(75, 75),
         },
     ];
@@ -53,7 +53,7 @@ function initMap() {
             }
         });
 
-        // var markersArray = [];
+        var markersArray = [];
         var infoArray = [];
 
         function write() {
@@ -83,7 +83,7 @@ function initMap() {
                         map: map,
                         icon: icons[$("#pokemon").val()],
                     });
-                    markersArray = [];
+
 
                     markersArray.push(marker);
                     marker.setMap(map);
@@ -132,11 +132,7 @@ function initMap() {
             // message.blur();
         }
 
-        function deleteInfo() {
-            infoArray.forEach((a) => {
-                a.close();
-            });
-        };
+
 
 
         function remove() {
@@ -145,13 +141,16 @@ function initMap() {
             chat.html("");
         }
 
+        const idSet = new Set();
+        let idArray = new Array();
         database.once("value", (snapshot) => {
             chat.html("");
 
             // Tried to use snapshot.val().forEach, but it didnt work here.
             for (let i in snapshot.val()) {
                 let c = snapshot.val()[i];
-                console.log(c);
+                let id = c.id
+                // console.log(c);
                 pos = {
                     lat: c.lat,
                     lng: c.lng,
@@ -162,14 +161,34 @@ function initMap() {
                     map: map,
                     icon: icons[c.pokemon],
                 });
-                // markersArray = [];
+                markersArray.push(marker);
 
-                // markersArray.push(marker);
                 marker.setMap(map);
                 infoWindow = new google.maps.InfoWindow();
                 infoWindow.setPosition(pos);
                 infoWindow.setContent(c.content);
                 infoWindow.open(map, marker);
+                if (!idSet.has(id)) {
+                    idSet.add(id);
+                    let newId = {
+                        userId: id,
+                        currentMarker: marker,
+                        currentInfo: infoWindow,
+                        currentPokemon: c.pokemon,
+                    }
+                    idArray.push(newId);
+
+                } else {
+                    for (let i = 0; i < idArray.length; i++) {
+                        if (idArray[i].userId == id) {
+                            idArray[i].currentMarker.setMap(null);
+                            idArray[i].currentInfo.close();
+                            idArray[i].currentInfo = infoWindow;
+                            break;
+                        }
+                    }
+                }
+
                 chat.prepend(
                     `<div><span>${c.time}</span> | ${c.name}: ${c.content}</div>`
                 );
@@ -179,6 +198,7 @@ function initMap() {
         database.limitToLast(1).on("value", (snapshot) => {
             for (let i in snapshot.val()) {
                 let c = snapshot.val()[i];
+                let id = c.id
                 pos = {
                     lat: c.lat,
                     lng: c.lng,
@@ -190,6 +210,7 @@ function initMap() {
                     icon: icons[c.pokemon],
                 });
                 // markersArray = [];
+                markersArray.push(marker);
 
                 // markersArray.push(marker);
                 marker.setMap(map);
@@ -197,13 +218,44 @@ function initMap() {
                 infoWindow.setPosition(pos);
                 infoWindow.setContent(c.content);
                 infoWindow.open(map, marker);
+                if (!idSet.has(id)) {
+                    idSet.add(id);
+                    let newId = {
+                        userId: id,
+                        currentMarker: marker,
+                        currentInfo: infoWindow,
+                        currentPokemon: c.pokemon,
+                    }
+                    idArray.push(newId);
+
+                } else {
+                    for (let i = 0; i < idArray.length; i++) {
+                        if (idArray[i].userId == id) {
+                            idArray[i].currentMarker.setMap(null);
+                            idArray[i].currentInfo.close();
+                            idArray[i].currentInfo = infoWindow;
+                            break;
+                        }
+                    }
+                }
+                // console.log(idSet);
+                // console.log(idArray);
                 chat.prepend(
                     `<div class="${c.id}"><span>${c.time} | </span>${c.name}: ${c.content}</div>`
                 );
-            }
+            };
         });
 
+        function deleteInfo() {
+            markersArray.forEach((a) => {
+                a.setMap(null);
+            })
+            infoArray.forEach((a) => {
+                a.close();
+            });
+        };
         sendButton.on("click", write);
-        deleteButton.on("click", remove);
+        // deleteButton.on("click", remove);
+        deleteButton.on("click", deleteInfo);
     });
 }
