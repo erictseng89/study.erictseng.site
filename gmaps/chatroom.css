@@ -16,12 +16,15 @@ body {
     border: 1px solid black;
     position: fixed;
     top: 10px;    left: 10px;
-    height: 60vh;
-    width: 35vw;
-    background-color: rgba(255,100,100,0.9);
+    height: 50vh;
+    min-width: 300px;
+    width: 27vw;
+    background-color: #262323e6;
     z-index: 100;
     display: flex;
     flex-direction: column;
+    padding: 0.25rem  0 0.25rem 0.5rem;
+    border-radius: 0.25rem;
 }
 
 /* #chatbox * {
@@ -37,8 +40,11 @@ body {
 #form * {
     border-radius: 4px;
     margin: 3px;
-}
 
+}
+input[type=text] {
+    width: 7rem;
+}
 input[type=button] {
     background-color: rgba(194, 21, 21, 0.7);
     margin-left: 5px;
@@ -47,5 +53,7 @@ input[type=button] {
 
 #chatContents {
     height: 100%;
-    overflow-y: scroll;
+    overflow-y: auto;
+    color: rgb(225, 225, 225);
+
 }

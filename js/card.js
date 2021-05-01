@@ -26,10 +26,10 @@ function askCard() {
     // $(".gameBox").HTML = "";
     let boxValue = document.querySelector('#cardPlayBox').value;
     if (boxValue == "") {
-        cardPairs = 12;
+        cardPairs = 9;
     }
     else if (boxValue < 1 || boxValue > 52) {
-        cardPairs = 12;
+        cardPairs = 9;
     }
     else {
         cardPairs = document.querySelector('#cardPlayBox').value;
@@ -95,6 +95,7 @@ function shuffle() {
     }
     hasStarted = false;
     hasShuffled = true;
+	$('#timerBox')[0].value = 0;
     $("#hintB")[0].disabled=false;
     console.log("洗牌完畢");
     return;
@@ -109,7 +110,8 @@ function reveal () {
     for (let i = 0; i < cardPlay; i++) {
         document.cardName[i].src=tempBank[i];
     }
-    setTimeout("hide()", 2000);
+    let revealTime = 1000 + cardPairs * 300;
+    setTimeout("hide()", revealTime);
     return;
 }
 
@@ -133,22 +135,17 @@ function check(index) {
         let now = new Date();
         timer1 = now.getTime();
         hasStarted = true;
-        console.log(timer1);
     }
     else {
         let now = new Date();
         timer2 = now.getTime();
-        console.log(timer2);
         elapsedTime = Math.floor((timer2 - timer1)/1000);
-        console.log(elapsedTime);
         $('#timerBox')[0].value = elapsedTime;
     }
     if (!hasShuffled) {
         alert("請先按[開始] 洗牌");
     }
     else {
-
-
         if (flip == false) {
             document.cardName[index].src=tempBank[index];
             card1 = index;
@@ -188,14 +185,14 @@ function correct(card1, card2) {
     document.cardName[card2].src=cardBank[53];
     winCount++;
     if (winCount == cardPairs) {
+		let winMessage = `恭喜您浪費了您${elapsedTime}秒的寶貴時間。\n請問您是否要再繼續浪費生命?`
         removeImg(card1, card2);
-        alert(`恭喜您浪費了您${elapsedTime}秒的寶貴時間。\n要不要再繼續浪費生命?`);
+        alert(winMessage);
         setTimeout("startPlaying()", 300);
     }
     else {
         setTimeout("removeImg(card1, card2)", 500);
     }
-    
 }
 
 function removeImg (card1, card2) {
