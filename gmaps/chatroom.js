@@ -94,7 +94,6 @@ function initMap() {
                     infoWindow.setContent(comment);
                     infoWindow.open(map, marker);
 
-                    deleteInfo();
                     infoArray.push(infoWindow);
 
                     let latitude = currentPos.lat;
